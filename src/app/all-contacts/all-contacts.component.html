@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <!-- heading -->
+      <h1 class="text-primary mt-4">
+        Online Contacts Application
+        <!-- add contact btn -->
+        <a routerLink="add-contact" class="btn btn-success">
+          <i class="fa-solid fa-user-plus me-1"></i>
+          Add New
+        </a>
+      </h1>
+      <!-- dummy data -->
+      <p style="text-align: justify;">
+        This is a Dummy Text: However, although it looks like Latin, the original words from Cicero have been scrambled and interjected with meaningless filler text for reasons that defy history.According to McClintock, but it’s just a theory, a part of the original text was scrambled by 15th century typesetter who needed placeholder text to mockup various fonts for a type specimen book.No matter what the true history may be, today Lorem ipsum is widely used since it closely resembles English more than Latin, creating a natural looking block of text that doesn’t distract the reader from the layout.The passage became popularized in the 1960s when Letraset used it to advertise their dry-transfer sheets. It reached the digital world between the 1980s and 1990s when Aldus bundled the text in the word-processing templates of their desktop publishing software PageMaker.Later on, it was widely adopted by other word processors, such as Microsoft Word; and by content management system tools, such as Wordpress for stock websites, page templates, and themes.Today, a large number of variations of Lorem ipsum actually exist.On the Internet, there are many generators that repeat predefined chunks and combine them with model sentences to create believable structures.
+      </p>
+      <!-- search box -->
+      <div class="row">
+        <div class="col-lg-6">
+          <input type="text" [(ngModel)]="searchKey" class="form-control" placeholder="Search Contacts Here">
+        </div>
+        <div class="col-lg-6"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- card design -->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6 mb-4" *ngFor="let contact of allContacts | filter:searchKey:'name'">
+      <div class="card">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <!-- image -->
+              <img class="contact_image rounded-3" [src]="contact.photo" alt="contact-image">
+            </div>
+            <div class="col-md-8">
+              <!-- contact details -->
+              <ul class="list-group">
+                <li class="list-group-item"> Name : &nbsp; <span class="fw-bolder">{{contact.name}}</span> </li>
+                <li class="list-group-item"> Mobile : &nbsp; <span class="fw-bolder">{{contact.mobile}}</span> </li>
+                <li class="list-group-item"> Email : &nbsp; <span class="fw-bolder">{{contact.email}}</span> </li>
+              </ul>
+            </div>
+            <div class="col-md-1 text-center d-flex flex-column justify-content-center align-items-center">
+              <!-- actions -->
+              <!-- view -->
+              <a routerLink="view-contact/{{contact.id}}" class="btn btn-info mb-1">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <!-- edit -->
+              <a routerLink="edit-contact/{{contact.id}}" class="btn btn-warning mb-1">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <!-- delete -->
+              <button (click)="deleteContact(contact.id)" class="btn btn-danger">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6"></div>
+  </div>
+</div>
